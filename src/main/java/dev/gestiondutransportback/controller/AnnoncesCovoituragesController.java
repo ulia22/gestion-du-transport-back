@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/annoncesCovoiturages")
 @CrossOrigin(origins = {"*"})
-public class annoncesCovoituragesController {
+public class AnnoncesCovoituragesController {
 
 }
