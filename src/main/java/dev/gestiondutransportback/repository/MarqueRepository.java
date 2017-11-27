@@ -6,4 +6,6 @@ import dev.gestiondutransportback.entity.Marque;
 
 public interface MarqueRepository extends JpaRepository<Marque, Integer>{
 
+	public Marque findByNom(String nom);
+
 }
