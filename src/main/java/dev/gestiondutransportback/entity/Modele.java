@@ -36,6 +36,12 @@ public class Modele {
 		this.nom = nom;
 		this.categorie = categorie;
 	}
+	public Modele(String nom, Categorie categorie, Marque marque) {
+		super();
+		this.nom = nom;
+		this.categorie = categorie;
+		this.marque=marque;
+	}
 
 	/**Getter for id
 	 * @return id

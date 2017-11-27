@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -57,7 +58,7 @@ public class AnnonceCovoit {
 	private Personne personne;
 	
 	@ManyToMany
-	@JoinColumn(name="ID_Covoitureur")
+	@JoinTable( name = "Reservation_Covoit", joinColumns = @JoinColumn(name = "ID_AnnonceCovoit", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ID_Covoitureur", referencedColumnName = "ID"))
 	private Set<Personne> covoitureurs;
 	
 	public AnnonceCovoit() {
@@ -77,6 +78,22 @@ public class AnnonceCovoit {
 		this.dateDepart = dateDepart;
 		this.dateDeCreation = dateDeCreation;
 		this.covoitureurs=new HashSet<>();
+	}
+	
+	public AnnonceCovoit(String addrDepart, String addrArrivee, String immatriculation, String marque, String modele,
+			Integer nbPlace, LocalDateTime dateDepart, LocalDateTime dateDeCreation, Personne personne, Personne covoitureur) {
+		super();
+		this.addrDepart = addrDepart;
+		this.addrArrivee = addrArrivee;
+		this.immatriculation = immatriculation;
+		this.marque = marque;
+		this.modele = modele;
+		this.nbPlace = nbPlace;
+		this.dateDepart = dateDepart;
+		this.dateDeCreation = dateDeCreation;
+		this.personne=personne;
+		this.covoitureurs=new HashSet<>();
+		this.covoitureurs.add(covoitureur);
 	}
 
 	/**Getter for id

@@ -55,6 +55,15 @@ public class Vehicule {
 		this.statut = statut;
 		this.reservations=new HashSet<>();
 	}
+	
+	public Vehicule(String immatriculation, String photo, Statut statut, Marque marque) {
+		super();
+		this.immatriculation = immatriculation;
+		this.photo = photo;
+		this.statut = statut;
+		this.reservations=new HashSet<>();
+		this.marque=marque;
+	}
 
 	/**Getter for id
 	 * @return id

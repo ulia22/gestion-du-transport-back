@@ -48,6 +48,24 @@ public class Reservation {
 		this.dateRetour = dateRetour;
 		this.avecChauffeur = avecChauffeur;
 	}
+	
+	public Reservation(LocalDateTime dateReserv, LocalDateTime dateRetour, boolean avecChauffeur, Vehicule vehicule) {
+		super();
+		this.dateReserv = dateReserv;
+		this.dateRetour = dateRetour;
+		this.avecChauffeur = avecChauffeur;
+		this.vehicule = vehicule;
+	}
+
+	public Reservation(LocalDateTime dateReserv, LocalDateTime dateRetour, boolean avecChauffeur, Vehicule vehicule, Personne personne, Personne chauffeur) {
+		super();
+		this.dateReserv = dateReserv;
+		this.dateRetour = dateRetour;
+		this.avecChauffeur = avecChauffeur;
+		this.vehicule = vehicule;
+		this.personne = personne;
+		this.chauffeur = chauffeur;
+	}
 
 	/**Getter for id
 	 * @return id

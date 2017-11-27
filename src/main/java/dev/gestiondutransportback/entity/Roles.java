@@ -1,7 +1,7 @@
 package dev.gestiondutransportback.entity;
 
 public enum Roles {
-	ADMINISTRATEUR("Administrateur"), UTILISATEUR("Utilisateur"), CHAUFFEUR("Chauffeur");
+	ADMINISTRATEUR("Administrateur"), COLLABORATEUR("Collaborateur"), CHAUFFEUR("Chauffeur");
 	
 	private String roleString;
 

@@ -40,10 +40,6 @@ public class Personne {
 	@OneToMany(mappedBy="personne")
 	private Set<AnnonceCovoit> annonces;
 	
-	@ManyToMany
-	@JoinTable(name = "ReservationCovoit", joinColumns = @JoinColumn(name = "ID_Personne", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ID_AnnonceCovoit", referencedColumnName = "ID"))
-	private Set<AnnonceCovoit> reservationsCovoit;
-	
 	@OneToMany(mappedBy="personne")
 	private Set<Reservation> reservations;
 	
@@ -52,7 +48,6 @@ public class Personne {
 	
 	public Personne() {
 		this.annonces= new HashSet<>();
-		this.reservationsCovoit=new HashSet<>();
 		this.reservations=new HashSet<>();
 		this.reservationsChauffeur=new HashSet<>();
 	}
@@ -62,19 +57,18 @@ public class Personne {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.annonces= new HashSet<>();
-		this.reservationsCovoit=new HashSet<>();
 		this.reservations=new HashSet<>();
 		this.reservationsChauffeur=new HashSet<>();
 	}
 
-	public Personne(String nom, String prenom, String permis, String matricule) {
+	public Personne(String nom, String prenom, String permis, String matricule, Account account) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.permis = permis;
 		this.matricule = matricule;
+		this.account=account;
 		this.annonces= new HashSet<>();
-		this.reservationsCovoit=new HashSet<>();
 		this.reservations=new HashSet<>();
 		this.reservationsChauffeur=new HashSet<>();
 	}
@@ -175,20 +169,6 @@ public class Personne {
 	 */
 	public void setAnnonces(Set<AnnonceCovoit> annonces) {
 		this.annonces = annonces;
-	}
-
-	/**Getter for reservationsCovoit
-	 * @return reservationsCovoit
-	 */
-	public Set<AnnonceCovoit> getReservationsCovoit() {
-		return reservationsCovoit;
-	}
-
-	/**
-	 * @param reservationsCovoit the reservationsCovoit to set
-	 */
-	public void setReservationsCovoit(Set<AnnonceCovoit> reservationsCovoit) {
-		this.reservationsCovoit = reservationsCovoit;
 	}
 
 	/**Getter for reservations
