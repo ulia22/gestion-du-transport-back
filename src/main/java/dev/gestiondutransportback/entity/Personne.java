@@ -31,6 +31,9 @@ public class Personne {
 	@Column
 	private String matricule;
 	
+	@Column 
+	private String photo;
+	
 	@OneToOne
 	@JoinColumn(name="ID_Account")
 	private Account account;
@@ -66,6 +69,18 @@ public class Personne {
 		this.permis = permis;
 		this.matricule = matricule;
 		this.account=account;
+		this.annonces= new HashSet<>();
+		this.reservations=new HashSet<>();
+		this.reservationsChauffeur=new HashSet<>();
+	}
+	
+	public Personne(String nom, String prenom, String matricule, Account account, String photo) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.matricule = matricule;
+		this.account=account;
+		this.photo=photo;
 		this.annonces= new HashSet<>();
 		this.reservations=new HashSet<>();
 		this.reservationsChauffeur=new HashSet<>();
@@ -195,6 +210,20 @@ public class Personne {
 	 */
 	public void setReservationsChauffeur(Set<Reservation> reservationsChauffeur) {
 		this.reservationsChauffeur = reservationsChauffeur;
+	}
+
+	/**Getter for photo
+	 * @return photo
+	 */
+	public String getPhoto() {
+		return photo;
+	}
+
+	/**
+	 * @param photo the photo to set
+	 */
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 	
 	

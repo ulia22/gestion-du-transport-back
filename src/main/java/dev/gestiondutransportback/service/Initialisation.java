@@ -1,10 +1,17 @@
 package dev.gestiondutransportback.service;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dev.gestiondutransportback.entity.Account;
 import dev.gestiondutransportback.entity.AnnonceCovoit;
@@ -15,6 +22,7 @@ import dev.gestiondutransportback.entity.Personne;
 import dev.gestiondutransportback.entity.Reservation;
 import dev.gestiondutransportback.entity.Roles;
 import dev.gestiondutransportback.entity.Statut;
+import dev.gestiondutransportback.entity.UserJson;
 import dev.gestiondutransportback.entity.Vehicule;
 import dev.gestiondutransportback.repository.AccountRepository;
 import dev.gestiondutransportback.repository.AnnonceCovoitRepository;
@@ -23,6 +31,7 @@ import dev.gestiondutransportback.repository.ModeleRepository;
 import dev.gestiondutransportback.repository.PersonneRepository;
 import dev.gestiondutransportback.repository.ReservationRepository;
 import dev.gestiondutransportback.repository.VehiculeRepository;
+import dev.gestiondutransportback.utils.Utils;
 
 @Service
 public class Initialisation {
@@ -79,6 +88,27 @@ public class Initialisation {
 			Stream.of(new Personne("Sto","Ange", "permis B", "010203", accountServ.findOne(1)),
 					new Personne("Truc","Joris", "permis B", "010203", accountServ.findOne(2))).forEach(personneServ::save);
 		}
+	}
+	public void initUserJson() throws IOException{
+		
+		String str = Utils
+				.get("https://raw.githubusercontent.com/DiginamicFormation/ressources-atelier/master/users.json");
+
+		JsonFactory jsonFactory = new JsonFactory();
+
+		JsonParser jsonParser = jsonFactory.createJsonParser(str);
+		ObjectMapper mapper = new ObjectMapper();
+		TypeReference<List<UserJson>> mapTypeUser = new TypeReference<List<UserJson>>() {
+		};
+
+		List<UserJson> liste = mapper.readValue(jsonParser, mapTypeUser);
+		
+		liste.forEach(userJson -> {
+			accountServ.save(new Account(userJson.getEmail(), userJson.getPassword(), Roles.COLLABORATEUR));
+			personneServ.save(new Personne(userJson.getNom(),userJson.getPrenom(),userJson.getMatricule(),accountServ.findByEmail(userJson.getEmail()),userJson.getPhoto())); 
+			});
 		
 	}
+		
+	
 }

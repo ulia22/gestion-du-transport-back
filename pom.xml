@@ -63,7 +63,16 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>com.cedarsoft.serialization.commons-serializers</groupId>
+			<artifactId>jackson</artifactId>
+			<version>8.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -78,10 +87,14 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-java8</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-artemis</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
-	<finalName>gestiontransport</finalName>
+		<finalName>gestiontransport</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
