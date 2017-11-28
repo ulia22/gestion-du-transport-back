@@ -18,6 +18,14 @@ public enum Categorie {
 		return categorieString;
 	}
 	
+	public static Categorie toCategorie(String s){
+		for(Categorie c:values()){
+			if(c.categorieString.equals(s))
+				return c;
+		}
+		return null;
+	}
+	
 	
 			  
 	public static List<String> getEnum ()

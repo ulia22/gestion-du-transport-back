@@ -8,4 +8,6 @@ public interface MarqueRepository extends JpaRepository<Marque, Integer>{
 
 	public Marque findByNom(String nom);
 
+	
+
 }

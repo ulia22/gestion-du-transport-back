@@ -6,4 +6,6 @@ import dev.gestiondutransportback.entity.Modele;
 
 public interface ModeleRepository extends JpaRepository<Modele, Integer>{
 
+	Modele findByNom(String string);
+
 }

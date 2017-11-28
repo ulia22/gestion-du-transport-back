@@ -43,6 +43,9 @@ public class Vehicule {
 	@ManyToOne
 	@JoinColumn
 	private Marque marque;
+	
+	@Column
+	private int nbp;
 
 	public Vehicule() {
 		this.reservations=new HashSet<>();
@@ -56,13 +59,14 @@ public class Vehicule {
 		this.reservations=new HashSet<>();
 	}
 	
-	public Vehicule(String immatriculation, String photo, Statut statut, Marque marque) {
+	public Vehicule(String immatriculation, String photo, Statut statut, Marque marque,int nbp) {
 		super();
 		this.immatriculation = immatriculation;
 		this.photo = photo;
 		this.statut = statut;
 		this.reservations=new HashSet<>();
 		this.marque=marque;
+		this.nbp=nbp;
 	}
 
 	/**Getter for id
@@ -175,6 +179,14 @@ public class Vehicule {
 	 */
 	public void setMarque(Marque marque) {
 		this.marque = marque;
+	}
+
+	public int getNbp() {
+		return nbp;
+	}
+
+	public void setNbp(int nbp) {
+		this.nbp = nbp;
 	}
 	
 	
