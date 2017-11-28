@@ -42,7 +42,7 @@ public class Vehicule {
 	
 	@ManyToOne
 	@JoinColumn
-	private Marque marque;
+	private Modele modele;
 
 	public Vehicule() {
 		this.reservations=new HashSet<>();
@@ -56,13 +56,13 @@ public class Vehicule {
 		this.reservations=new HashSet<>();
 	}
 	
-	public Vehicule(String immatriculation, String photo, Statut statut, Marque marque) {
+	public Vehicule(String immatriculation, String photo, Statut statut, Modele modele) {
 		super();
 		this.immatriculation = immatriculation;
 		this.photo = photo;
 		this.statut = statut;
 		this.reservations=new HashSet<>();
-		this.marque=marque;
+		this.modele=modele;
 	}
 
 	/**Getter for id
@@ -163,18 +163,18 @@ public class Vehicule {
 		this.reservations = reservations;
 	}
 
-	/**Getter for marque
-	 * @return marque
+	/**Getter for modele
+	 * @return modele
 	 */
-	public Marque getMarque() {
-		return marque;
+	public Modele getModele() {
+		return modele;
 	}
 
 	/**
-	 * @param marque the marque to set
+	 * @param modele the modele to set
 	 */
-	public void setMarque(Marque marque) {
-		this.marque = marque;
+	public void setModele(Modele modele) {
+		this.modele = modele;
 	}
 	
 	

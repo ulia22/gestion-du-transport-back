@@ -1,5 +1,8 @@
 package dev.gestiondutransportback.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -8,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Modele {
@@ -27,6 +31,9 @@ public class Modele {
 	@JoinColumn
 	private Marque marque;
 	
+	@OneToMany(mappedBy="modele")
+	private Set<Vehicule> vehicules;
+	
 	public Modele() {
 		
 	}
@@ -35,12 +42,14 @@ public class Modele {
 		super();
 		this.nom = nom;
 		this.categorie = categorie;
+		this.vehicules= new HashSet<>();
 	}
 	public Modele(String nom, Categorie categorie, Marque marque) {
 		super();
 		this.nom = nom;
 		this.categorie = categorie;
 		this.marque=marque;
+		this.vehicules= new HashSet<>();
 	}
 
 	/**Getter for id
@@ -97,6 +106,20 @@ public class Modele {
 	 */
 	public void setMarque(Marque marque) {
 		this.marque = marque;
+	}
+
+	/**Getter for vehicules
+	 * @return vehicules
+	 */
+	public Set<Vehicule> getVehicules() {
+		return vehicules;
+	}
+
+	/**
+	 * @param vehicules the vehicules to set
+	 */
+	public void setVehicules(Set<Vehicule> vehicules) {
+		this.vehicules = vehicules;
 	}
 	
 	

@@ -20,15 +20,12 @@ public class Marque {
 	@Column
 	private String nom;
 	
-	@OneToMany(mappedBy="marque")
-	private Set<Vehicule> vehicules;
-	
 	@OneToMany (mappedBy="marque")
 	private Set<Modele> modeles;
 	
 	public Marque() {
 		this.modeles=new HashSet<>();
-		this.vehicules=new HashSet<>();
+		
 		
 	}
 
@@ -36,7 +33,6 @@ public class Marque {
 		super();
 		this.nom = nom;
 		this.modeles=new HashSet<>();
-		this.vehicules=new HashSet<>();
 	}
 	
 
@@ -66,20 +62,6 @@ public class Marque {
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
-	}
-
-	/**Getter for vehicules
-	 * @return vehicules
-	 */
-	public Set<Vehicule> getVehicules() {
-		return vehicules;
-	}
-
-	/**
-	 * @param vehicules the vehicules to set
-	 */
-	public void setVehicules(Set<Vehicule> vehicules) {
-		this.vehicules = vehicules;
 	}
 
 	/**Getter for modeles
