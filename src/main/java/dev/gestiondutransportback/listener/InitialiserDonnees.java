@@ -23,7 +23,7 @@ public class InitialiserDonnees {
 		init.initPersonne();
 		init.initReservation();
 		init.initAnnonceCovoit();
-		init.initUserJson();
+		//init.initUserJson();
 
 	}
 }

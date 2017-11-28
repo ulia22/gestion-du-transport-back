@@ -2,13 +2,14 @@ package dev.gestiondutransportback.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import javax.persistence.EntityManager;
+import java.util.stream.Collectors;
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +26,9 @@ import dev.gestiondutransportback.entity.Vehicule;
 import dev.gestiondutransportback.repository.MarqueRepository;
 import dev.gestiondutransportback.repository.ModeleRepository;
 import dev.gestiondutransportback.repository.VehiculeRepository;
+import dev.gestiontransportback.view.VehiculeView;
+
+
 
 @RestController
 @RequestMapping("/vehicules")
@@ -45,59 +49,55 @@ public class VehiculesController {
 	}
 	
 	@GetMapping
-	public List<Vehicule> listerVehicule(){
+	public List<VehiculeView> listerVehicule(){
 
-		return vehiculeRepository.findAll();
+		return vehiculeRepository.findAll().stream().map(v-> VehiculeView.view(v)).collect(Collectors.toList());
 		
 	}
 	
 	@PostMapping
 	@Transactional
-	public List<String>create(@RequestBody List<String> parse){
+	public VehiculeView create(@RequestBody VehiculeView vehiculeView){
 		
-
 		
-		Marque marque = marqueRepository.findByNom(parse.get(2));
+		Modele modele = modeleRepository.findByNom(vehiculeView.getModele());
+		
+		Marque marque = marqueRepository.findByNom(vehiculeView.getMarque());
 		
 		if(marque==null){
 			
 			marque = new Marque();
 			
-			marque.setNom(parse.get(2));
+			marque.setNom(vehiculeView.getMarque());
+			
 			
 			marqueRepository.save(marque);
 			
 			
 		}
 		
-		Modele model = modeleRepository.findByNom(parse.get(3));
-		
-		if(model==null){
-			model= new Modele();
-			model.setCategorie(Categorie.toCategorie(parse.get(1)));
-			model.setNom(parse.get(3));
-			model.setMarque(marque);
+		if(modele==null){
+			modele= new Modele();
+			modele.setCategorie(Categorie.toCategorie(vehiculeView.getCategorie()));
+			modele.setNom(vehiculeView.getModele());
+			modele.setMarque(marque);
 			
-			modeleRepository.save(model);
+			modele = modeleRepository.save(modele);
 		}
 		
+
 		
-		Vehicule vehicule = new Vehicule(parse.get(0),parse.get(5), Statut.EN_SERVICE, marque,Integer.parseInt(parse.get(4)));
+
 		
 		
+		Vehicule vehicule=new Vehicule(vehiculeView.getImmatriculation(), vehiculeView.getPhoto(), Statut.EN_SERVICE, Integer.parseInt(vehiculeView.getNbp()),modele) ;
 	
 		
-		vehicule= vehiculeRepository.save(vehicule);
+		vehiculeRepository.save(vehicule);
+	
+
 		
-		List l = new ArrayList();
-		l.add(parse.get(0));
-		l.add(parse.get(1));
-		l.add(parse.get(2));
-		l.add(parse.get(3));
-		l.add(parse.get(4));
-		l.add(parse.get(5));
-		
-		return l;
+		return VehiculeView.view(vehicule);
 		
 	}
 	
