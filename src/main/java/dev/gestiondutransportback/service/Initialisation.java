@@ -66,11 +66,7 @@ public class Initialisation {
 	
 	public void initVehicule(){
 		if(vehiculeServ.count()==0){
-<<<<<<< HEAD
-			Stream.of(new Vehicule("010203", "https://www.alexandre-marine.fr/s/cc_images/cache_2436147775.jpg?t=1395164051", Statut.EN_SERVICE, marqueServ.findOne(1) , 4)).forEach(vehiculeServ::save);
-=======
-			Stream.of(new Vehicule("010203", "https://www.alexandre-marine.fr/s/cc_images/cache_2436147775.jpg?t=1395164051", Statut.EN_SERVICE, modeleServ.findOne(1))).forEach(vehiculeServ::save);
->>>>>>> 0bd0bfc88378475109937eaad158c3e5a9f21028
+
 		}
 	}
 	

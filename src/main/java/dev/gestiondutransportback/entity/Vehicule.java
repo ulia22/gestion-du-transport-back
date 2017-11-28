@@ -40,8 +40,7 @@ public class Vehicule {
 	@OneToMany (mappedBy="vehicule")
 	private Set<Reservation> reservations;
 	
-	@ManyToOne
-	@JoinColumn
+
 
 
 	public Vehicule() {
@@ -57,13 +56,6 @@ public class Vehicule {
 	}
 	
 
-		super();
-		this.immatriculation = immatriculation;
-		this.photo = photo;
-		this.statut = statut;
-		this.reservations=new HashSet<>();
-
-	}
 
 	/**Getter for id
 	 * @return id
@@ -163,27 +155,8 @@ public class Vehicule {
 		this.reservations = reservations;
 	}
 
-	/**Getter for modele
-	 * @return modele
-	 */
-	public Modele getModele() {
-		return modele;
-	}
 
-	/**
-	 * @param modele the modele to set
-	 */
-	public void setModele(Modele modele) {
-		this.modele = modele;
-	}
 
-	public int getNbp() {
-		return nbp;
-	}
-
-	public void setNbp(int nbp) {
-		this.nbp = nbp;
-	}
 	
 	
 	
