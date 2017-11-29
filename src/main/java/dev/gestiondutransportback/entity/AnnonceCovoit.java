@@ -14,6 +14,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+import dev.gestiondutransportback.utils.ParseDeserializer;
+
 @Entity
 public class AnnonceCovoit {
 	@Id
@@ -45,9 +49,11 @@ public class AnnonceCovoit {
 	private Integer nbPlace;
 	
 	@Column
+	@JsonDeserialize(using = ParseDeserializer.class)
 	private LocalDateTime dateDepart;
 	
 	@Column
+	@JsonDeserialize(using = ParseDeserializer.class)
 	private LocalDateTime dateDeCreation;
 	
 	@Column
