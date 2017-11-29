@@ -117,7 +117,8 @@ public class Initialisation {
 	public void initPersonne() {
 		if (personneServ.count() == 0) {
 			Stream.of(new Personne("Sto", "Ange", "permis B", "010203", accountServ.findOne(1)),
-					new Personne("Truc", "Joris", "permis B", "010203", accountServ.findOne(2)))
+					new Personne("Truc", "Joris", "permis B", "010203", accountServ.findOne(2)),
+					new Personne("qsd", "qsd", "qdsqdd B", "515635", accountServ.findOne(3)))
 					.forEach(personneServ::save);
 		}
 	}

@@ -34,15 +34,12 @@ public class AnnonceCovoitView {
 		super();
 	}
 	
-	/**
-	 * Constructeur par recopie
-	 */
 	public AnnonceCovoitView(AnnonceCovoit a) {
 		this();
 		this.id = a.getId();
 		this.addrDepart = a.getAddrDepart();
 		this.addrArrivee = a.getAddrArrivee();
-		this.duree = a.getDuree();
+		this.duree = a.getDistance();
 		this.distance = a.getDistance();
 		this.immatriculation = a.getImmatriculation();
 		this.marque = a.getMarque();
@@ -52,6 +49,7 @@ public class AnnonceCovoitView {
 		this.dateDeCreation = a.getDateDeCreation();
 		this.isArchive = a.isArchive();
 	}
+	
 	
 	/**
 	 * Getter for id.

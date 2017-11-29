@@ -26,6 +26,7 @@ public class ReservationsControlleur {
 	
 	@GetMapping("/annoncesCovoiturages")
 	public List<AnnonceCovoitView> listerReservations(@RequestParam(value="covoitureurId", required=true) Integer covoitureurId) throws ReservationException {
+		
 			List<AnnonceCovoit> lAnnonce = annonceCovoitServ.findByIdCovoitureur(covoitureurId);
 			List<AnnonceCovoitView> lAnnonceView = lAnnonce.stream().map(a -> new AnnonceCovoitView(a)).collect(Collectors.toList());
 			if(lAnnonceView != null){
