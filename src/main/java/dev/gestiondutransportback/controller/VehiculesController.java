@@ -2,14 +2,14 @@ package dev.gestiondutransportback.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Map;
 import java.util.stream.Collectors;
 
-
+import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,8 +27,6 @@ import dev.gestiondutransportback.repository.MarqueRepository;
 import dev.gestiondutransportback.repository.ModeleRepository;
 import dev.gestiondutransportback.repository.VehiculeRepository;
 import dev.gestiontransportback.view.VehiculeView;
-
-
 
 @RestController
 @RequestMapping("/vehicules")
@@ -51,16 +49,15 @@ public class VehiculesController {
 	@GetMapping
 	public List<VehiculeView> listerVehicule(){
 
-		return vehiculeRepository.findAll().stream().map(v-> VehiculeView.view(v)).collect(Collectors.toList());
+		return vehiculeRepository.findAll().stream().map(v -> VehiculeView.view(v)).collect(Collectors.toList());
 		
 	}
 	
 	@PostMapping
 	@Transactional
-	public VehiculeView create(@RequestBody VehiculeView vehiculeView){
+	public  VehiculeView create(@RequestBody VehiculeView vehiculeView){
 		
-		
-		Modele modele = modeleRepository.findByNom(vehiculeView.getModele());
+
 		
 		Marque marque = marqueRepository.findByNom(vehiculeView.getMarque());
 		
@@ -70,11 +67,12 @@ public class VehiculesController {
 			
 			marque.setNom(vehiculeView.getMarque());
 			
-			
 			marqueRepository.save(marque);
 			
 			
 		}
+		
+		Modele modele = modeleRepository.findByNom(vehiculeView.getModele());
 		
 		if(modele==null){
 			modele= new Modele();
@@ -82,20 +80,15 @@ public class VehiculesController {
 			modele.setNom(vehiculeView.getModele());
 			modele.setMarque(marque);
 			
-			modele = modeleRepository.save(modele);
+			modeleRepository.save(modele);
 		}
 		
-
 		
-
-		
-		
-		Vehicule vehicule=new Vehicule(vehiculeView.getImmatriculation(), vehiculeView.getPhoto(), Statut.EN_SERVICE, Integer.parseInt(vehiculeView.getNbp()),modele) ;
+		Vehicule vehicule = new Vehicule(vehiculeView.getImmatriculation(), vehiculeView.getPhoto(), Statut.EN_SERVICE,Integer.parseInt(vehiculeView.getNbp()),modele);
 	
 		
-		vehiculeRepository.save(vehicule);
-	
-
+		vehicule= vehiculeRepository.save(vehicule);
+		
 		
 		return VehiculeView.view(vehicule);
 		
