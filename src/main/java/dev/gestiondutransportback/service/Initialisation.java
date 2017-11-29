@@ -79,7 +79,15 @@ public class Initialisation {
 	
 	public void initAnnonceCovoit(){
 		if(annCovServ.count()==0){
-			Stream.of(new AnnonceCovoit("Maison", "Loin", "010203", "BMW", "BM-25", 3, LocalDateTime.now(), LocalDateTime.of(2018, 12, 5, 12, 00), personneServ.findOne(1), personneServ.findOne(2) )).forEach(annCovServ::save);
+			int nbAnnonce = 40;
+			int yearsStart = 1980;
+			for(int i = 0; i < nbAnnonce; i++){
+				annCovServ.save(new AnnonceCovoit("Maison"+i, "Loin"+i, "0000"+i, "BMW"+i, "BM-25", 5, LocalDateTime.of(yearsStart+i, 12, 5, 12, 00), LocalDateTime.now(), personneServ.findOne(1), personneServ.findOne(2)));
+			}
+			
+//			Stream.of(new AnnonceCovoit("Maison", "Loin", "010203", "BMW", "BM-25", 3, LocalDateTime.of(2018, 12, 5, 12, 00), LocalDateTime.now(), personneServ.findOne(1), personneServ.findOne(2) ),
+//					new AnnonceCovoit("DTA", "Paris", "01258", "Ferrarri", "Enzo", 4, LocalDateTime.of(2012, 12, 5, 12, 00), LocalDateTime.now(), personneServ.findOne(1), personneServ.findOne(2) )
+//					).forEach(annCovServ::save);
 		}
 	}
 	
@@ -96,6 +104,7 @@ public class Initialisation {
 
 		JsonFactory jsonFactory = new JsonFactory();
 
+		@SuppressWarnings("deprecation")
 		JsonParser jsonParser = jsonFactory.createJsonParser(str);
 		ObjectMapper mapper = new ObjectMapper();
 		TypeReference<List<UserJson>> mapTypeUser = new TypeReference<List<UserJson>>() {
