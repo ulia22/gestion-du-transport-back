@@ -25,6 +25,8 @@ public class AnnonceCovoitView {
 	private LocalDateTime dateDepart;
 	private LocalDateTime dateDeCreation;
 	private boolean isArchive;
+	private String prenomChauffeur;
+	private String nomChauffeur;
 	
 	
 	/**
@@ -48,6 +50,8 @@ public class AnnonceCovoitView {
 		this.dateDepart = a.getDateDepart();
 		this.dateDeCreation = a.getDateDeCreation();
 		this.isArchive = a.isArchive();
+		this.nomChauffeur = a.getPersonne().getNom();
+		this.prenomChauffeur = a.getPersonne().getPrenom();
 	}
 	
 	
@@ -218,6 +222,38 @@ public class AnnonceCovoitView {
 	 */
 	public void setArchive(boolean isArchive) {
 		this.isArchive = isArchive;
+	}
+
+	/**
+	 * Getter for prenomChauffeur.
+	 * @return the prenomChauffeur
+	 */
+	public String getPrenomChauffeur() {
+		return prenomChauffeur;
+	}
+
+	/**
+	 * Setter for prenomChauffeur
+	 * @param prenomChauffeur the prenomChauffeur to set
+	 */
+	public void setPrenomChauffeur(String prenomChauffeur) {
+		this.prenomChauffeur = prenomChauffeur;
+	}
+
+	/**
+	 * Getter for nomChauffeur.
+	 * @return the nomChauffeur
+	 */
+	public String getNomChauffeur() {
+		return nomChauffeur;
+	}
+
+	/**
+	 * Setter for nomChauffeur
+	 * @param nomChauffeur the nomChauffeur to set
+	 */
+	public void setNomChauffeur(String nomChauffeur) {
+		this.nomChauffeur = nomChauffeur;
 	}
 	
 	
