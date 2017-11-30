@@ -25,7 +25,11 @@ public class AnnonceCovoitView {
 	private LocalDateTime dateDepart;
 	private LocalDateTime dateDeCreation;
 	private boolean isArchive;
+	private Integer nbPlaceDisponnibles;
+	
+
 	private Integer idPersonne;
+
 	private String prenomChauffeur;
 	private String nomChauffeur;
 	
@@ -51,10 +55,12 @@ public class AnnonceCovoitView {
 		this.dateDepart = a.getDateDepart();
 		this.dateDeCreation = a.getDateDeCreation();
 		this.isArchive = a.isArchive();
-		
 		this.idPersonne = a.getPersonne().getId();
+
 		this.nomChauffeur = a.getPersonne().getNom();
 		this.prenomChauffeur = a.getPersonne().getPrenom();
+		
+		this.nbPlaceDisponnibles = this.nbPlace - a.getCovoitureurs().size();
 	}
 	
 	
@@ -259,6 +265,21 @@ public class AnnonceCovoitView {
 		this.nomChauffeur = nomChauffeur;
 	}
 
+	/**
+	 * Getter for nbPlaceDisponnibles.
+	 * @return the nbPlaceDisponnibles
+	 */
+	public Integer getNbPlaceDisponnibles() {
+		return nbPlaceDisponnibles;
+	}
+
+	/**
+	 * Setter for nbPlaceDisponnibles
+	 * @param nbPlaceDisponnibles the nbPlaceDisponnibles to set
+	 */
+	public void setNbPlaceDisponnibles(Integer nbPlaceDisponnibles) {
+		this.nbPlaceDisponnibles = nbPlaceDisponnibles;
+	}
 	/**Getter for idPersonne
 	 * @return idPersonne
 	 */
@@ -271,6 +292,7 @@ public class AnnonceCovoitView {
 	 */
 	public void setIdPersonne(Integer idPersonne) {
 		this.idPersonne = idPersonne;
+
 	}
 	
 	
