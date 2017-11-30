@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import dev.gestiondutransportback.entity.AnnonceCovoit;
+import dev.gestiondutransportback.entity.Personne;
 
 public interface AnnonceCovoitRepository extends JpaRepository<AnnonceCovoit, Integer> {
 
@@ -15,4 +16,6 @@ public interface AnnonceCovoitRepository extends JpaRepository<AnnonceCovoit, In
 			+ "INNER JOIN reservation_covoit ON reservation_covoit.id_annonce_covoit = annonce_covoit.id\n"
 			+ "INNER JOIN personne ON reservation_covoit.id_covoitureur = ?1 \n)", nativeQuery = true)
 	public List<AnnonceCovoit> findByIdCovoitureur(Integer idCovoitureur);
+	
+	public List<AnnonceCovoit> findByPersonne(Personne personne);
 }
