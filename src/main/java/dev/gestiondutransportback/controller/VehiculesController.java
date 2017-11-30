@@ -26,7 +26,7 @@ import dev.gestiondutransportback.entity.Vehicule;
 import dev.gestiondutransportback.repository.MarqueRepository;
 import dev.gestiondutransportback.repository.ModeleRepository;
 import dev.gestiondutransportback.repository.VehiculeRepository;
-import dev.gestiontransportback.view.VehiculeView;
+import dev.gestiondutransportback.view.VehiculeView;
 
 @RestController
 @RequestMapping("/vehicules")
