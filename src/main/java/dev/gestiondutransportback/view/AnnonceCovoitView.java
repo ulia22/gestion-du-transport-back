@@ -25,6 +25,10 @@ public class AnnonceCovoitView {
 	private LocalDateTime dateDepart;
 	private LocalDateTime dateDeCreation;
 	private boolean isArchive;
+<<<<<<< HEAD
+=======
+	private Integer idPersonne;
+>>>>>>> master
 	private String prenomChauffeur;
 	private String nomChauffeur;
 	
@@ -50,6 +54,11 @@ public class AnnonceCovoitView {
 		this.dateDepart = a.getDateDepart();
 		this.dateDeCreation = a.getDateDeCreation();
 		this.isArchive = a.isArchive();
+<<<<<<< HEAD
+=======
+		
+		this.idPersonne = a.getPersonne().getId();
+>>>>>>> master
 		this.nomChauffeur = a.getPersonne().getNom();
 		this.prenomChauffeur = a.getPersonne().getPrenom();
 	}
@@ -255,6 +264,23 @@ public class AnnonceCovoitView {
 	public void setNomChauffeur(String nomChauffeur) {
 		this.nomChauffeur = nomChauffeur;
 	}
+<<<<<<< HEAD
+=======
+
+	/**Getter for idPersonne
+	 * @return idPersonne
+	 */
+	public Integer getIdPersonne() {
+		return idPersonne;
+	}
+
+	/**
+	 * @param idPersonne the idPersonne to set
+	 */
+	public void setIdPersonne(Integer idPersonne) {
+		this.idPersonne = idPersonne;
+	}
+>>>>>>> master
 	
 	
 }

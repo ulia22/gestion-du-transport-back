@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.gestiondutransportback.entity.AnnonceCovoit;
 import dev.gestiondutransportback.repository.AnnonceCovoitRepository;
+import dev.gestiondutransportback.repository.PersonneRepository;
+import dev.gestiondutransportback.view.AnnonceCovoitView;
 
 @RestController
 @RequestMapping("/annoncesCovoiturages")
@@ -16,10 +18,18 @@ import dev.gestiondutransportback.repository.AnnonceCovoitRepository;
 public class AnnoncesCovoituragesController {
 
 	@Autowired private AnnonceCovoitRepository annonceCovoitServ;
+	@Autowired private PersonneRepository personneServ;
+	
 	@PostMapping("/creer")
-	public AnnonceCovoit creerAnnonce(@RequestBody AnnonceCovoit annonce){
+	public AnnonceCovoitView creerAnnonce(@RequestBody AnnonceCovoit annonce){
+		annonce.setPersonne(personneServ.findById(annonce.getPersonne().getId()));
 		annonceCovoitServ.save(annonce);
+<<<<<<< HEAD
 		return annonce;
+=======
+		
+		return new AnnonceCovoitView(annonce);
+>>>>>>> master
 		
 	}
 }
