@@ -20,5 +20,6 @@ public class AnnoncesCovoituragesController {
 	public AnnonceCovoit creerAnnonce(@RequestBody AnnonceCovoit annonce){
 		annonceCovoitServ.save(annonce);
 		return annonce;
+		
 	}
 }
