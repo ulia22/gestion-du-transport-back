@@ -18,21 +18,25 @@ import dev.gestiondutransportback.view.AnnonceCovoitView;
 
 @RestController
 @RequestMapping("/reservations")
-@CrossOrigin(origins = {"*"})
+@CrossOrigin(origins = { "*" })
 public class ReservationsControlleur {
 
-	@Autowired PersonneRepository personneServ;
-	@Autowired AnnonceCovoitRepository annonceCovoitServ;
-	
+	@Autowired
+	PersonneRepository personneServ;
+	@Autowired
+	AnnonceCovoitRepository annonceCovoitServ;
+
 	@GetMapping("/annoncesCovoiturages")
-	public List<AnnonceCovoitView> listerReservations(@RequestParam(value="covoitureurId", required=true) Integer covoitureurId) throws ReservationException {
-		
-			List<AnnonceCovoit> lAnnonce = annonceCovoitServ.findByIdCovoitureur(covoitureurId);
-			List<AnnonceCovoitView> lAnnonceView = lAnnonce.stream().map(a -> new AnnonceCovoitView(a)).collect(Collectors.toList());
-			if(lAnnonceView != null){
-				return lAnnonceView;
-			}else{
-				throw new ReservationException("Problème à la récupération des réservations.");
-			}
+	public List<AnnonceCovoitView> listerReservations(
+			@RequestParam(value = "covoitureurId", required = true) Integer covoitureurId) throws ReservationException {
+
+		List<AnnonceCovoit> lAnnonce = annonceCovoitServ.findByIdCovoitureur(covoitureurId);
+		List<AnnonceCovoitView> lAnnonceView = lAnnonce.stream().map(a -> new AnnonceCovoitView(a))
+				.collect(Collectors.toList());
+		if (lAnnonceView != null) {
+			return lAnnonceView;
+		} else {
+			throw new ReservationException("Problème à la récupération des réservations.");
+		}
 	}
 }
