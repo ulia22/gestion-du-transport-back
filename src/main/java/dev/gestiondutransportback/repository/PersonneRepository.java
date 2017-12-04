@@ -8,4 +8,5 @@ import dev.gestiondutransportback.entity.Personne;
 public interface PersonneRepository extends JpaRepository<Personne, Integer>{
 
 	public Personne findByAccount(Account a);
+	
 }

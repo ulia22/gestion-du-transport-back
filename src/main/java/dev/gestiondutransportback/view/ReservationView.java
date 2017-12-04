@@ -21,7 +21,11 @@ public class ReservationView {
 	Date retour;
 	
 	public ReservationView(){
-		
+		super();
+	}
+	
+	public ReservationView(ReservationView a){
+		super();
 	}
 	
 	public ReservationView(String marque,String immatriculation,String modele,Date reservation,
