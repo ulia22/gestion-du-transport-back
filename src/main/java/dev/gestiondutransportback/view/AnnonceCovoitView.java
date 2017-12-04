@@ -4,8 +4,12 @@
 package dev.gestiondutransportback.view;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import dev.gestiondutransportback.entity.AnnonceCovoit;
+import dev.gestiondutransportback.entity.Personne;
 
 /**
  * @author ETY9
@@ -27,9 +31,10 @@ public class AnnonceCovoitView {
 	private boolean isArchive;
 	private Integer nbPlaceDisponnibles;
 	
+	private List<Integer> passagerId;
+	
 
 	private Integer idPersonne;
-
 	private String prenomChauffeur;
 	private String nomChauffeur;
 	
@@ -55,10 +60,12 @@ public class AnnonceCovoitView {
 		this.dateDepart = a.getDateDepart();
 		this.dateDeCreation = a.getDateDeCreation();
 		this.isArchive = a.isArchive();
+		
 		this.idPersonne = a.getPersonne().getId();
-
 		this.nomChauffeur = a.getPersonne().getNom();
 		this.prenomChauffeur = a.getPersonne().getPrenom();
+		
+		this.passagerId = a.getCovoitureurs().stream().map(Personne::getId).collect(Collectors.toList());
 		
 		this.nbPlaceDisponnibles = this.nbPlace - a.getCovoitureurs().size();
 	}
@@ -293,6 +300,22 @@ public class AnnonceCovoitView {
 	public void setIdPersonne(Integer idPersonne) {
 		this.idPersonne = idPersonne;
 
+	}
+
+	/**
+	 * Getter for passagerId.
+	 * @return the passagerId
+	 */
+	public List<Integer> getPassagerId() {
+		return passagerId;
+	}
+
+	/**
+	 * Setter for passagerId
+	 * @param passagerId the passagerId to set
+	 */
+	public void setPassagerId(List<Integer> passagerId) {
+		this.passagerId = passagerId;
 	}
 	
 	

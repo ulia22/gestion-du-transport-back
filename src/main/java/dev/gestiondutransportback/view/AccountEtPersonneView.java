@@ -47,6 +47,15 @@ public class AccountEtPersonneView {
 		this.permis = p.getPermis();
 		this.matricule = p.getMatricule();
 	}
+	
+	public AccountEtPersonneView(Personne p) {
+		this();
+		this.idPersonne = p.getId();
+		this.nom = p.getNom();
+		this.prenom = p.getPrenom();
+		this.permis = p.getPermis();
+		this.matricule = p.getMatricule();
+	}
 
 	/**
 	 * @param email
