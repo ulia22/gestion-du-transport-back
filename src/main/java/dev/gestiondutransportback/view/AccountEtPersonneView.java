@@ -1,3 +1,4 @@
+
 /**
  * 
  */
@@ -16,9 +17,9 @@ public class AccountEtPersonneView {
 	private String email;
 
 	private Roles role;
-	
-	private Integer idPersonne;
 
+	private Integer idPersonne;
+	
 	private String nom;
 
 	private String prenom;
@@ -57,7 +58,7 @@ public class AccountEtPersonneView {
 	 * @param permis
 	 * @param matricule
 	 */
-	public AccountEtPersonneView(String email, Roles role, Integer idP,String nom, String prenom, String permis, String matricule) {
+	public AccountEtPersonneView(String email, Roles role, Integer idP, String nom, String prenom, String permis, String matricule) {
 		this();
 		this.email = email;
 		this.role = role;
@@ -181,7 +182,7 @@ public class AccountEtPersonneView {
 	public void setMatricule(String matricule) {
 		this.matricule = matricule;
 	}
-	
+
 	/**
 	 * Getter for idPersonne.
 	 * @return the idPersonne
