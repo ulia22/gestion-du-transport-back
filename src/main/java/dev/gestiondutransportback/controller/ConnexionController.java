@@ -28,7 +28,6 @@ public class ConnexionController {
 
 	@PostMapping
 	public AccountEtPersonneView postConnexion(@RequestBody Map<String, String> map) throws ConnexionException {
-		System.out.println(map.get("email")+" "+map.get("password"));
 		Account account = accountServ.findByEmail(map.get("email"));
 		if (account != null && account.getMdp().equals(map.get("password"))) {
 			Personne personne = personneServ.findByAccount(account);
