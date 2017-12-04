@@ -16,6 +16,8 @@ public class AccountEtPersonneView {
 	private String email;
 
 	private Roles role;
+	
+	private Integer idPersonne;
 
 	private String nom;
 
@@ -39,6 +41,7 @@ public class AccountEtPersonneView {
 		this();
 		this.email = a.getEmail();
 		this.role = a.getRole();
+		this.idPersonne = p.getId();
 		this.nom = p.getNom();
 		this.prenom = p.getPrenom();
 		this.permis = p.getPermis();
@@ -54,10 +57,11 @@ public class AccountEtPersonneView {
 	 * @param permis
 	 * @param matricule
 	 */
-	public AccountEtPersonneView(String email, Roles role, String nom, String prenom, String permis, String matricule) {
+	public AccountEtPersonneView(String email, Roles role, Integer idP,String nom, String prenom, String permis, String matricule) {
 		this();
 		this.email = email;
 		this.role = role;
+		this.idPersonne = idP;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.permis = permis;
@@ -176,5 +180,21 @@ public class AccountEtPersonneView {
 	 */
 	public void setMatricule(String matricule) {
 		this.matricule = matricule;
+	}
+	
+	/**
+	 * Getter for idPersonne.
+	 * @return the idPersonne
+	 */
+	public Integer getIdPersonne() {
+		return idPersonne;
+	}
+
+	/**
+	 * Setter for idPersonne
+	 * @param idPersonne the idPersonne to set
+	 */
+	public void setIdPersonne(Integer idPersonne) {
+		this.idPersonne = idPersonne;
 	}
 }

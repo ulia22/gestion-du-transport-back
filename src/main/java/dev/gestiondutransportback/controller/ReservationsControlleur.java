@@ -16,7 +16,7 @@ import dev.gestiondutransportback.entity.Personne;
 import dev.gestiondutransportback.entity.Reservation;
 import dev.gestiondutransportback.repository.PersonneRepository;
 import dev.gestiondutransportback.repository.ReservationRepository;
-import dev.gestiondutransportback.view.ReservationView;
+import dev.gestiondutransportback.view.ReservationViewVehicule;
 import dev.gestiondutransportback.view.VehiculeView;
 
 import java.time.*;
@@ -33,22 +33,22 @@ public class ReservationsControlleur {
 	
 	@Autowired PersonneRepository personneRepository;
 	 
-	Personne personnes;
+	
 	
 	
 	@GetMapping("/vehiculesCovoiturages")
-	public List<ReservationView> listerReservationsVehicules(
+	public List<ReservationViewVehicule> listerReservationsVehicules(
 			@RequestParam(value = "personneId", required = true) Integer personneId) {
 		
 		System.out.println("coter back");
-		List<ReservationView> vehiculesReserve = reservationRepository.findByPersonneId(personneId) ;
-		List<ReservationView> vehiculesReserveView = vehiculesReserve.stream().map(a -> new ReservationView(a)).collect(Collectors.toList());
+		List<ReservationViewVehicule> vehiculesReserve =  reservationRepository.findByPersonneId(personneId).stream().map(r -> ReservationViewVehicule.view(r)).collect(Collectors.toList()) ;
+		//List<ReservationViewVehicule> vehiculesReserveView = vehiculesReserve.stream().map(a -> new ReservationViewVehicule(a)).collect(Collectors.toList());
 		
-			return vehiculesReserveView;
+			return vehiculesReserve;
 		
 	}
 	
-	@PostMapping
+	/*@PostMapping
 	@Transactional
 	public ReservationView create(@RequestBody ReservationView vehiculeView){
 		
@@ -68,6 +68,6 @@ public class ReservationsControlleur {
 		
 		return vehiculeView.view(reservation);
 		
-	}
+	}*/
 
 }

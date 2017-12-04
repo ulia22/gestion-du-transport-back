@@ -8,7 +8,7 @@ import java.util.Date;
 
 import dev.gestiondutransportback.entity.Reservation;
 
-public class ReservationView {
+public class ReservationViewVehicule {
 
 	String marque;
 	
@@ -16,20 +16,20 @@ public class ReservationView {
 	
 	String modele;
 	
-	Date reservation;
+	LocalDateTime  reservation;
 	
-	Date retour;
+	LocalDateTime  retour;
 	
-	public ReservationView(){
+	public ReservationViewVehicule(){
 		super();
 	}
 	
-	public ReservationView(ReservationView a){
+	public ReservationViewVehicule(ReservationViewVehicule a){
 		super();
 	}
 	
-	public ReservationView(String marque,String immatriculation,String modele,Date reservation,
-			Date retour){
+	public ReservationViewVehicule(String marque,String immatriculation,String modele,LocalDateTime  reservation,
+			LocalDateTime  retour){
 		
 		this.marque = marque;
 		
@@ -43,13 +43,13 @@ public class ReservationView {
 		
 	}
 	
-	public static ReservationView view(Reservation reservation){
+	public static ReservationViewVehicule view(Reservation reservation){
 		
-		return new ReservationView(reservation.getVehicule().getModele().getMarque().getNom(),
+		return new ReservationViewVehicule(reservation.getVehicule().getModele().getMarque().getNom(),
 				reservation.getVehicule().getImmatriculation(),
 				reservation.getVehicule().getModele().getNom(),
-				Date.from(reservation.getDateReserv().atZone(ZoneId.systemDefault()).toInstant()),
-				Date.from(reservation.getDateRetour().atZone(ZoneId.systemDefault()).toInstant()))
+				reservation.getDateReserv(),
+				reservation.getDateRetour())
 				;
 	}
 
@@ -98,28 +98,28 @@ public class ReservationView {
 	/** getters
 	 * @return the reservation
 	 */
-	public Date getReservation() {
+	public LocalDateTime  getReservation() {
 		return reservation;
 	}
 
 	/** Setter
 	 * @param reservation the reservation to set
 	 */
-	public void setReservation(Date reservation) {
+	public void setReservation(LocalDateTime  reservation) {
 		this.reservation = reservation;
 	}
 
 	/** getters
 	 * @return the retour
 	 */
-	public Date getRetour() {
+	public LocalDateTime  getRetour() {
 		return retour;
 	}
 
 	/** Setter
 	 * @param retour the retour to set
 	 */
-	public void setRetour(Date retour) {
+	public void setRetour(LocalDateTime  retour) {
 		this.retour = retour;
 	}
 	

@@ -6,10 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import dev.gestiondutransportback.entity.Personne;
 import dev.gestiondutransportback.entity.Reservation;
-import dev.gestiondutransportback.view.ReservationView;
+import dev.gestiondutransportback.view.ReservationViewVehicule;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
 
-	List<ReservationView> findByPersonneId(Integer integer);
+	List<Reservation> findByPersonneId(Integer integer);
 
 }
