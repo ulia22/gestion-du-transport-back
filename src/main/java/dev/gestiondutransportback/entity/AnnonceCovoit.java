@@ -31,10 +31,10 @@ public class AnnonceCovoit {
 	private String addrArrivee;
 	
 	@Column
-	private Integer duree;
+	private String duree;
 	
 	@Column
-	private Integer distance;
+	private String distance;
 	
 	@Column
 	private String immatriculation;
@@ -147,28 +147,28 @@ public class AnnonceCovoit {
 	/**Getter for duree
 	 * @return duree
 	 */
-	public Integer getDuree() {
+	public String getDuree() {
 		return duree;
 	}
 
 	/**
 	 * @param duree the duree to set
 	 */
-	public void setDuree(Integer duree) {
+	public void setDuree(String duree) {
 		this.duree = duree;
 	}
 
 	/**Getter for distance
 	 * @return distance
 	 */
-	public Integer getDistance() {
+	public String getDistance() {
 		return distance;
 	}
 
 	/**
 	 * @param distance the distance to set
 	 */
-	public void setDistance(Integer distance) {
+	public void setDistance(String distance) {
 		this.distance = distance;
 	}
 

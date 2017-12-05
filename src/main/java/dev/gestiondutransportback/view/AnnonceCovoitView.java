@@ -20,8 +20,8 @@ public class AnnonceCovoitView {
 	private Integer id;
 	private String addrDepart;
 	private String addrArrivee;
-	private Integer duree;
-	private Integer distance;
+	private String duree;
+	private String distance;
 	private String immatriculation;
 	private String marque;
 	private String modele;
@@ -51,7 +51,7 @@ public class AnnonceCovoitView {
 		this.id = a.getId();
 		this.addrDepart = a.getAddrDepart();
 		this.addrArrivee = a.getAddrArrivee();
-		this.duree = a.getDistance();
+		this.duree = a.getDuree();
 		this.distance = a.getDistance();
 		this.immatriculation = a.getImmatriculation();
 		this.marque = a.getMarque();
@@ -117,28 +117,28 @@ public class AnnonceCovoitView {
 	 * Getter for duree.
 	 * @return the duree
 	 */
-	public Integer getDuree() {
+	public String getDuree() {
 		return duree;
 	}
 	/**
 	 * Setter for duree
 	 * @param duree the duree to set
 	 */
-	public void setDuree(Integer duree) {
+	public void setDuree(String duree) {
 		this.duree = duree;
 	}
 	/**
 	 * Getter for distance.
 	 * @return the distance
 	 */
-	public Integer getDistance() {
+	public String getDistance() {
 		return distance;
 	}
 	/**
 	 * Setter for distance
 	 * @param distance the distance to set
 	 */
-	public void setDistance(Integer distance) {
+	public void setDistance(String distance) {
 		this.distance = distance;
 	}
 	/**

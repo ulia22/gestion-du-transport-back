@@ -18,7 +18,9 @@ import dev.gestiondutransportback.entity.Personne;
 import dev.gestiondutransportback.exception.ReservationException;
 import dev.gestiondutransportback.repository.AnnonceCovoitRepository;
 import dev.gestiondutransportback.repository.PersonneRepository;
+import dev.gestiondutransportback.repository.ReservationRepository;
 import dev.gestiondutransportback.view.AnnonceCovoitView;
+import dev.gestiondutransportback.view.ReservationViewVehicule;
 
 @RestController
 @RequestMapping("/reservations")
@@ -26,11 +28,30 @@ import dev.gestiondutransportback.view.AnnonceCovoitView;
 public class ReservationsControlleur {
 
 	@Autowired
-	
 	PersonneRepository personneServ;
 	@Autowired
 	AnnonceCovoitRepository annonceCovoitServ;
+	@Autowired
+	ReservationRepository reservationRepository;
 
+	
+	
+	@GetMapping("/vehiculesCovoiturages")
+	public List<ReservationViewVehicule> listerReservationsVehicules(
+			@RequestParam(value = "personneId", required = true) Integer personneId) throws ReservationException {
+		
+		List<ReservationViewVehicule> reservation =  reservationRepository.findByPersonneId(personneId).stream()
+				.map(r -> ReservationViewVehicule.view(r)).collect(Collectors.toList());
+		
+		if (reservation != null) {
+			return reservation;
+		} else {
+			throw new ReservationException("Problème à la récupération des réservations.");
+		}
+	
+	
+	}
+	
 	@GetMapping("/annoncesCovoiturages")
 	public List<AnnonceCovoitView> listerReservations(
 			@RequestParam(value = "covoitureurId", required = true) Integer covoitureurId) throws ReservationException {

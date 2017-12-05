@@ -29,7 +29,7 @@ public class AnnoncesCovoituragesController {
 	public AnnonceCovoitView creerAnnonce(@RequestBody AnnonceCovoit annonce){
 		annonce.setPersonne(personneServ.findById(annonce.getPersonne().getId()));
 		annonceCovoitServ.save(annonce);
-		
+
 		return new AnnonceCovoitView(annonce);
 		
 	}
@@ -39,6 +39,8 @@ public class AnnoncesCovoituragesController {
 		
 		return annonceCovoitServ.findByPersonne(personneServ.findById(personneId)).stream().map(annonceCovoit -> new AnnonceCovoitView(annonceCovoit)).collect(Collectors.toList());
 	}
+	
+
   @GetMapping
 	public List<AnnonceCovoitView> listAnnonces(@RequestParam(value = "personneId", required = true) Integer personneId){
 		List<AnnonceCovoit> annonces = annonceCovoitServ.findAll();
@@ -46,3 +48,4 @@ public class AnnoncesCovoituragesController {
 		return annoncesView;
 	}
 }
+
