@@ -39,6 +39,7 @@ public class AnnoncesCovoituragesController {
 		
 		return annonceCovoitServ.findByPersonne(personneServ.findById(personneId)).stream().map(annonceCovoit -> new AnnonceCovoitView(annonceCovoit)).collect(Collectors.toList());
 	}
+	
   @GetMapping
 	public List<AnnonceCovoitView> listAnnonces(@RequestParam(value = "personneId", required = true) Integer personneId){
 		List<AnnonceCovoit> annonces = annonceCovoitServ.findAll();
