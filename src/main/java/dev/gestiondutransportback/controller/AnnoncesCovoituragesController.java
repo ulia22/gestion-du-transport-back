@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.gestiondutransportback.entity.AnnonceCovoit;
 import dev.gestiondutransportback.repository.AnnonceCovoitRepository;
+import dev.gestiondutransportback.repository.PersonneRepository;
 import dev.gestiondutransportback.view.AnnonceCovoitView;
 
 @RestController
@@ -22,14 +23,24 @@ import dev.gestiondutransportback.view.AnnonceCovoitView;
 public class AnnoncesCovoituragesController {
 
 	@Autowired private AnnonceCovoitRepository annonceCovoitServ;
+	@Autowired private PersonneRepository personneServ;
+	
 	@PostMapping("/creer")
-	public AnnonceCovoit creerAnnonce(@RequestBody AnnonceCovoit annonce){
+	public AnnonceCovoitView creerAnnonce(@RequestBody AnnonceCovoit annonce){
+		annonce.setPersonne(personneServ.findById(annonce.getPersonne().getId()));
 		annonceCovoitServ.save(annonce);
-		return annonce;
+		
+		return new AnnonceCovoitView(annonce);
 		
 	}
 	
-	@GetMapping
+	@GetMapping("/mesAnnonces")
+	public List <AnnonceCovoitView> listeMesAnnonces(@RequestParam(value="personneId", required=true) Integer personneId){
+		
+		return annonceCovoitServ.findByPersonne(personneServ.findById(personneId)).stream().map(annonceCovoit -> new AnnonceCovoitView(annonceCovoit)).collect(Collectors.toList());
+	}
+	
+  @GetMapping
 	public List<AnnonceCovoitView> listAnnonces(@RequestParam(value = "personneId", required = true) Integer personneId){
 		List<AnnonceCovoit> annonces = annonceCovoitServ.findAll();
 		List<AnnonceCovoitView> annoncesView = annonces.stream().filter(a->a.getPersonne().getId() != personneId).map(a->new AnnonceCovoitView(a)).collect(Collectors.toList());
