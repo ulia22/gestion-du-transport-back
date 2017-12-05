@@ -2,7 +2,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-<<<<<<< HEAD
 	<profiles>
 		<profile>
 			<id>dev</id>
@@ -33,8 +32,6 @@
 		</profile>
 	</profiles>
 
-=======
->>>>>>> 0bd0bfc88378475109937eaad158c3e5a9f21028
 
 	<groupId>dev</groupId>
 	<artifactId>gestion-du-transport-back</artifactId>
@@ -48,11 +45,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.8.RELEASE</version>
-<<<<<<< HEAD
 		<relativePath /> <!-- lookup parent from repository -->
-=======
-		<relativePath/> <!-- lookup parent from repository -->
->>>>>>> 0bd0bfc88378475109937eaad158c3e5a9f21028
 	</parent>
 
 	<properties>
@@ -70,7 +63,20 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>com.cedarsoft.serialization.commons-serializers</groupId>
+			<artifactId>jackson</artifactId>
+			<version>8.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -81,20 +87,18 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-<<<<<<< HEAD
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-java8</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-artemis</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
-	<finalName>gestiontransport</finalName>
-=======
-	</dependencies>
-
-	<build>
->>>>>>> 0bd0bfc88378475109937eaad158c3e5a9f21028
+		<finalName>gestiontransport</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
