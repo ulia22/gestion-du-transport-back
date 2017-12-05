@@ -71,7 +71,7 @@ public class Initialisation {
 	public void initMarque() {
 		if (marqueServ.count() == 0) {
 			Stream.of(new Marque("Peugeot")).forEach(marqueServ::save);
-			;
+			
 		}
 	}
 
@@ -88,7 +88,7 @@ public class Initialisation {
 			Stream.of(new Reservation(LocalDateTime.now(), LocalDateTime.of(2018, 12, 5, 12, 00), false,
 					vehiculeServ.findOne(1), personneServ.findOne(1), personneServ.findOne(2)))
 					.forEach(reservationServ::save);
-			;
+			
 		}
 
 	}
