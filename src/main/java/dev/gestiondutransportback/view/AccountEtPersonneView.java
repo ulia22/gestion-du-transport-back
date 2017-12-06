@@ -27,6 +27,8 @@ public class AccountEtPersonneView {
 	private String permis;
 
 	private String matricule;
+	
+	private String photo;
 
 	/**
 	 * 
@@ -47,6 +49,17 @@ public class AccountEtPersonneView {
 		this.prenom = p.getPrenom();
 		this.permis = p.getPermis();
 		this.matricule = p.getMatricule();
+		this.photo = p.getPhoto();
+	}
+	
+	public AccountEtPersonneView(Personne p) {
+		this();
+		this.idPersonne = p.getId();
+		this.nom = p.getNom();
+		this.prenom = p.getPrenom();
+		this.permis = p.getPermis();
+		this.matricule = p.getMatricule();
+		this.photo = p.getPhoto();
 	}
 
 	/**
@@ -197,5 +210,21 @@ public class AccountEtPersonneView {
 	 */
 	public void setIdPersonne(Integer idPersonne) {
 		this.idPersonne = idPersonne;
+	}
+
+	/**
+	 * Getter for photo.
+	 * @return the photo
+	 */
+	public String getPhoto() {
+		return photo;
+	}
+
+	/**
+	 * Setter for photo
+	 * @param photo the photo to set
+	 */
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 }
