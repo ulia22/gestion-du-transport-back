@@ -10,4 +10,6 @@ public interface PersonneRepository extends JpaRepository<Personne, Integer>{
 	public Personne findByAccount(Account a);
 	
 	public Personne findById(Integer id);
+	
+	public Personne findByMatricule(String matricule);
 }
