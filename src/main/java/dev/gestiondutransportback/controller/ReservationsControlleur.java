@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -63,6 +64,24 @@ public class ReservationsControlleur {
 			return lAnnonceView;
 		} else {
 			throw new ReservationException("Problème à la récupération des réservations.");
+		}
+	}
+	
+	@DeleteMapping("annoncesCovoiturages")
+	public List<AnnonceCovoitView> annulerReservation(
+			@RequestParam(value = "covoitureurId", required = true) Integer covoitureurId,
+			@RequestParam(value = "reservationId", required = true) Integer reservationId) throws ReservationException {
+
+		AnnonceCovoit annonce = annonceCovoitServ.findOne(reservationId);
+		annonce.getCovoitureurs().removeIf(p-> p.getId() == covoitureurId);
+		annonceCovoitServ.save(annonce);
+		List<AnnonceCovoit> lAnnonce = annonceCovoitServ.findByIdCovoitureur(covoitureurId);
+		List<AnnonceCovoitView> lAnnonceView = lAnnonce.stream().map(a -> new AnnonceCovoitView(a))
+				.collect(Collectors.toList());
+		if (lAnnonceView != null) {
+			return lAnnonceView;
+		} else {
+			throw new ReservationException("Problème à la supression d'une réservation.");
 		}
 	}
 	
