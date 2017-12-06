@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -43,6 +44,16 @@ public class AnnoncesCovoituragesController {
 
   @GetMapping
 	public List<AnnonceCovoitView> listAnnonces(@RequestParam(value = "personneId", required = true) Integer personneId){
+		List<AnnonceCovoit> annonces = annonceCovoitServ.findAll();
+		List<AnnonceCovoitView> annoncesView = annonces.stream().filter(a->a.getPersonne().getId() != personneId).map(a->new AnnonceCovoitView(a)).collect(Collectors.toList());
+		return annoncesView;
+	}
+  
+  @DeleteMapping
+  public List<AnnonceCovoitView> annulerAnnonce(
+		  @RequestParam(value = "personneId", required = true) Integer personneId,
+		  @RequestParam(value = "annonceId", required = true) Integer annonceId){
+	  	annonceCovoitServ.delete(annonceId);
 		List<AnnonceCovoit> annonces = annonceCovoitServ.findAll();
 		List<AnnonceCovoitView> annoncesView = annonces.stream().filter(a->a.getPersonne().getId() != personneId).map(a->new AnnonceCovoitView(a)).collect(Collectors.toList());
 		return annoncesView;
