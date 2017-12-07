@@ -5,6 +5,9 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
 public class LocalDateTimeUtils {
+	
+	private LocalDateTimeUtils() {
+	}
     
     public static LocalDateTime getDateUTC(){
         LocalDateTime ldt = LocalDateTime.now();

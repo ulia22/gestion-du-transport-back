@@ -74,7 +74,20 @@ public class Personne {
 		this.reservationsChauffeur=new HashSet<>();
 	}
 	
-	public Personne(String nom, String prenom, String matricule, Account account, String photo) {
+	public Personne(String nom, String prenom, String permis,  String matricule, Account account, String photo) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.permis = permis;
+		this.matricule = matricule;
+		this.account=account;
+		this.photo=photo;
+		this.annonces= new HashSet<>();
+		this.reservations=new HashSet<>();
+		this.reservationsChauffeur=new HashSet<>();
+	}
+	
+	public Personne(String nom, String prenom,  String matricule, Account account, String photo) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;

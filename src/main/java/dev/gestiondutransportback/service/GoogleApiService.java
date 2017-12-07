@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import dev.gestiondutransportback.utils.Utils;
+import dev.gestiondutransportback.utils.GetHttp;
 
 @Service
 public class GoogleApiService {
@@ -18,7 +18,7 @@ public class GoogleApiService {
 	public JsonNode list(String keywords) throws IOException{
 		String keyword = keywords.replaceAll(" ", "%20");
 		String url = "https://maps.googleapis.com/maps/api/geocode/json?region=fr&address="+keyword+"&key="+ResourceBundle.getBundle("application").getString("googleApi_key");
-		String str = Utils.get(url);
+		String str = GetHttp.get(url);
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode jsonNode = mapper.readTree(str);
 		return jsonNode.get("results");
@@ -28,7 +28,7 @@ public class GoogleApiService {
 		String villeDepartFormat = villeDepart.replaceAll(" ", "%20");
 		String villeArriveFormat = villeArrive.replaceAll(" ", "%20");
 		String url = "https://maps.googleapis.com/maps/api/directions/json?origin="+villeDepartFormat+"&destination="+villeArriveFormat+"&key="+ResourceBundle.getBundle("application").getString("googleApi_key");
-		String str = Utils.get(url);
+		String str = GetHttp.get(url);
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode jsonNode = mapper.readTree(str);
 		String distance = jsonNode.get("routes").get(0).get("legs").get(0).get("distance").get("text").asText();
